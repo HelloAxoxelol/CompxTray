@@ -23,8 +23,10 @@ namespace CompxTray
         readonly int[] intervals = { 30, 60, 300 };
         SettingsWindow window;
 
-        MouseStatus lastOk, lastStatus;
+        MouseStatus lastOk, lastStatus, lastLogged;
         string lastMessage = "";
+        // Voltage readings jitter by a few mV, so smaller changes are not logged.
+        const int LogMilliVoltStep = 10;
         bool busy, warned20, warned10, notifiedFull;
         IntPtr currentHicon = IntPtr.Zero;
 
@@ -153,10 +155,13 @@ namespace CompxTray
         void Apply(MouseStatus st)
         {
             lastStatus = st;
-            if (st.Message != lastMessage)
+            bool batteryChanged = st.Ok && (lastLogged == null || st.Percent != lastLogged.Percent || st.Charging != lastLogged.Charging
+                                            || Math.Abs(st.MilliVolts - lastLogged.MilliVolts) >= LogMilliVoltStep);
+            if (st.Message != lastMessage || batteryChanged)
             {
                 AppSettings.Log(st.Ok ? string.Format("Battery {0} % charging={1} {2} mV", st.Percent, st.Charging, st.MilliVolts) : st.Message);
                 lastMessage = st.Message;
+                if (st.Ok) lastLogged = st;
             }
             string name = st.DeviceName.Length > 0 ? st.DeviceName : lastOk != null ? lastOk.DeviceName : "Mouse";
 
