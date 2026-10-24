@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- macOS and Linux preview (`cross/`, .NET 10 with Avalonia and HidSharp): battery level in the menu bar or tray with low battery notifications, start at login, and a read-only settings window. Not yet tested on a real Mac or Linux PC.
+- `compxtray-cli` for macOS and Linux: battery, settings, diagnostics and device listing, read-only.
+- Linux package with an installer and a udev rule for access to the receiver without root. macOS packages for Apple silicon and Intel as an ad-hoc signed `CompxTray.app`.
+- The protocol code is split from the Windows HID transport (`src/Device/WinHid.cs`), so both builds share it.
+- The log now records every change in battery level or charging state and every voltage change of 10 mV or more, not only when the mouse wakes up.
+
 ## 1.0.0 - 2026-10-24
 
 First public release.

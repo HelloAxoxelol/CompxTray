@@ -1,0 +1,23 @@
+CompxTray for macOS and Linux includes the following third-party software.
+CompxTray itself is MIT licensed: https://github.com/HelloAxoxelol/CompxTray/blob/main/LICENSE
+
+HIDSharp 2.6.4
+  Copyright 2010-2025 James F. Bellinger <http://software.seekye.com/hidsharp>
+  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in
+  compliance with the License. You may obtain a copy of the License at
+  http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software distributed under the License is
+  distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and limitations under the License.
+
+Avalonia 12.1.4 (MIT)
+  Copyright (c) AvaloniaUI OÜ and contributors. https://github.com/AvaloniaUI/Avalonia
+
+SkiaSharp and HarfBuzzSharp (MIT)
+  Copyright (c) Microsoft Corporation. https://github.com/mono/SkiaSharp
+
+Inter font (SIL Open Font License 1.1)
+  Copyright (c) The Inter Project Authors. https://github.com/rsms/inter
+
+.NET 10 runtime (MIT)
+  Copyright (c) .NET Foundation and Contributors. https://github.com/dotnet/runtime

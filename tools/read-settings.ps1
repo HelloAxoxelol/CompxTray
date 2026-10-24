@@ -8,7 +8,7 @@ $out = Join-Path $here 'settings-report.txt'
 $lines = @("=== CompxTray settings report $(Get-Date -Format s) ===")
 $dev = $null
 try {
-    Add-Type -Path @((Join-Path $src 'CompxDevice.cs'), (Join-Path $src 'ConfigMap.cs'), (Join-Path $src 'MouseConfig.cs'))
+    Add-Type -Path @((Join-Path $src 'CompxDevice.cs'), (Join-Path $src 'WinHid.cs'), (Join-Path $src 'ConfigMap.cs'), (Join-Path $src 'MouseConfig.cs'))
     $err = $null
     $dev = [CompxTray.Device.CompxDevice]::Open([ref]$err)
     if ($dev -eq $null) { throw "Could not open the receiver: $err" }
