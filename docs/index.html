@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Svive Flow 7 Software: Battery, DPI &amp; Polling Rate | CompxTray</title>
+<meta name="description" content="Free, unofficial software for the Svive Flow 7 wireless mouse. See the battery level in the Windows tray and change DPI, polling rate, lift-off and sleep settings.">
+<link rel="canonical" href="https://helloaxoxelol.github.io/CompxTray/">
+<link rel="alternate" hreflang="en" href="https://helloaxoxelol.github.io/CompxTray/">
+<link rel="alternate" hreflang="sv" href="https://helloaxoxelol.github.io/CompxTray/sv/">
+<link rel="alternate" hreflang="x-default" href="https://helloaxoxelol.github.io/CompxTray/">
+<link rel="icon" type="image/png" href="icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CompxTray">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="sv_SE">
+<meta property="og:title" content="Svive Flow 7 Software: Battery, DPI & Polling Rate">
+<meta property="og:description" content="Free, unofficial software for the Svive Flow 7. Battery level in the tray, plus DPI, polling rate, lift-off and sleep settings for Windows.">
+<meta property="og:url" content="https://helloaxoxelol.github.io/CompxTray/">
+<meta property="og:image" content="https://helloaxoxelol.github.io/CompxTray/social-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "CompxTray",
+  "alternateName": "Svive Flow 7 software",
+  "description": "Free, unofficial software for the Svive Flow 7 wireless gaming mouse: battery level in the Windows tray, DPI stages, polling rate, lift-off, debounce, motion sync and sleep settings.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Windows 10, Windows 11",
+  "softwareVersion": "1.0.0",
+  "license": "https://opensource.org/licenses/MIT",
+  "url": "https://helloaxoxelol.github.io/CompxTray/",
+  "downloadUrl": "https://github.com/HelloAxoxelol/CompxTray/releases/latest",
+  "codeRepository": "https://github.com/HelloAxoxelol/CompxTray",
+  "image": "https://helloaxoxelol.github.io/CompxTray/screenshots/performance.png",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is there official software for the Svive Flow 7?",
+      "acceptedAnswer": { "@type": "Answer", "text": "When this project started, we could not find any official software or settings driver for the Svive Flow 7. The mouse works in Windows without a driver, but to see the battery level or change DPI and polling rate you need a tool like CompxTray." } },
+    { "@type": "Question", "name": "How do I check the battery level of my Svive mouse?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Run CompxTray. The battery percentage is shown in the Windows tray and updates automatically." } },
+    { "@type": "Question", "name": "Can I change the DPI and polling rate of the Svive Flow 7?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. CompxTray sets 125, 250, 500 or 1000 Hz polling rate and 1 to 6 DPI stages from 100 to 30,000 DPI." } },
+    { "@type": "Question", "name": "Does it work with the Svive Flow 5, Flow S5 or Flow S7?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Probably for the battery level, but these models have not been tested. Settings stay read-only until a model is verified." } },
+    { "@type": "Question", "name": "Is CompxTray made by Svive?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. CompxTray is an independent open-source project with no connection to Svive." } }
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #0d0f13; --surface: #15181e; --surface2: #1e222a; --border: #252a33;
+    --text: #eceff4; --dim: #8a93a3; --accent: #1ec8ff; --on-accent: #041018; --good: #35d07f;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 16px/1.6 "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  header.top { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--text); }
+  .brand img { width: 32px; height: 32px; }
+  .lang a { color: var(--dim); margin-left: 14px; font-size: 14px; }
+  .lang a[aria-current] { color: var(--text); }
+  .hero { padding: 48px 0 24px; text-align: center; }
+  .eyebrow { color: var(--accent); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; }
+  h1 { font-size: clamp(32px, 6vw, 52px); line-height: 1.1; margin: 12px 0 16px; font-weight: 700; }
+  .lead { color: var(--dim); font-size: clamp(17px, 2.4vw, 20px); max-width: 720px; margin: 0 auto 28px; }
+  .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: 12px 22px; border-radius: 8px; font-weight: 600; letter-spacing: .02em; }
+  .btn.primary { background: var(--accent); color: var(--on-accent); }
+  .btn.secondary { background: var(--surface2); color: var(--text); }
+  .btn:hover { text-decoration: none; filter: brightness(1.1); }
+  .note { color: var(--dim); font-size: 14px; margin-top: 12px; }
+  .shot { margin: 40px auto 0; max-width: 900px; }
+  .shot img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border);
+              box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 80px rgba(30,200,255,.08); }
+  section { padding: 56px 0 8px; }
+  h2 { font-size: 28px; margin: 0 0 20px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .card h3 { margin: 0 0 6px; font-size: 17px; }
+  .card p { margin: 0; color: var(--dim); font-size: 15px; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+  .pair img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 15px; }
+  th { color: var(--dim); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; }
+  tr:last-child td { border-bottom: 0; }
+  .ok { color: var(--good); }
+  details { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; margin-bottom: 10px; }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { color: var(--dim); margin: 10px 0 0; }
+  ol li { margin-bottom: 6px; }
+  code { background: var(--surface2); padding: 2px 6px; border-radius: 4px; font-size: 14px; }
+  footer { color: var(--dim); font-size: 14px; padding: 48px 0 40px; border-top: 1px solid var(--border); margin-top: 56px; }
+  @media (max-width: 640px) { .pair { grid-template-columns: 1fr; } th, td { padding: 10px 12px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="./"><img src="icon.png" alt="" width="32" height="32">CompxTray</a>
+    <nav class="lang"><a href="./" aria-current="page">English</a><a href="sv/" hreflang="sv">Svenska</a></nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="eyebrow">Unofficial · Free · Open source</div>
+      <h1>Software for the Svive Flow 7</h1>
+      <p class="lead">See the battery level of your Svive mouse in the Windows tray, and change DPI, polling rate, lift-off, debounce and sleep settings. Everything the Flow 7 was missing.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/HelloAxoxelol/CompxTray/releases/latest">Download for Windows</a>
+        <a class="btn secondary" href="https://github.com/HelloAxoxelol/CompxTray">Source on GitHub</a>
+      </div>
+      <p class="note">Windows 10 and 11 · a single small .exe · no account, no ads, no internet access</p>
+      <div class="shot"><img src="screenshots/performance.png" width="900" height="700" alt="CompxTray, Svive Flow 7 software: polling rate and sensor settings"></div>
+    </div>
+
+    <section id="features">
+      <h2>What it does</h2>
+      <div class="grid">
+        <div class="card"><h3>Battery level in the tray</h3><p>The icon shows the percentage and changes colour as the battery drains. You get a warning at 20&nbsp;% and 10&nbsp;%.</p></div>
+        <div class="card"><h3>DPI stages</h3><p>1 to 6 stages, 100 to 30,000 DPI. The active stage follows the DPI button on the mouse.</p></div>
+        <div class="card"><h3>Polling rate</h3><p>125, 250, 500 or 1000 Hz, with a built-in test that measures what the mouse actually sends.</p></div>
+        <div class="card"><h3>Sensor settings</h3><p>Lift-off distance, motion sync and button debounce.</p></div>
+        <div class="card"><h3>Sleep timer</h3><p>Choose how long the mouse waits before it goes to sleep, from 30 seconds to 30 minutes.</p></div>
+        <div class="card"><h3>Safe by design</h3><p>Every change is read back from the mouse. Your original settings are backed up and can be restored with one click.</p></div>
+      </div>
+      <div class="pair">
+        <img src="screenshots/dpi.png" width="900" height="700" loading="lazy" alt="Svive Flow 7 DPI stage settings in CompxTray">
+        <img src="screenshots/power.png" width="900" height="700" loading="lazy" alt="Svive Flow 7 battery level and sleep timer in CompxTray">
+      </div>
+    </section>
+
+    <section id="mice">
+      <h2>Supported mice</h2>
+      <table>
+        <thead><tr><th>Mouse</th><th>Battery</th><th>Settings</th></tr></thead>
+        <tbody>
+          <tr><td>Svive Flow 7</td><td class="ok">Yes</td><td class="ok">Yes, verified</td></tr>
+          <tr><td>Svive Flow 5, Flow S5, Flow S7</td><td>Probably</td><td>Read-only until verified</td></tr>
+          <tr><td>Other Compx-based mice (VXE, ATK, Attack Shark and others)</td><td>Likely</td><td>Read-only until verified</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Own one of the untested mice? <a href="https://github.com/HelloAxoxelol/CompxTray#adding-a-mouse">Help verify it</a>.</p>
+    </section>
+
+    <section id="install">
+      <h2>Install</h2>
+      <ol>
+        <li>Download <code>CompxTray.exe</code> from the <a href="https://github.com/HelloAxoxelol/CompxTray/releases/latest">latest release</a>.</li>
+        <li>Run it. The battery icon appears next to the clock.</li>
+        <li>Double-click the icon to open the settings.</li>
+      </ol>
+      <p class="note">The exe is not code-signed yet, so Windows SmartScreen may warn the first time. Choose <i>More info → Run anyway</i>. Each release is built by GitHub Actions from the public source and comes with a SHA-256 checksum.</p>
+    </section>
+
+    <section id="faq">
+      <h2>FAQ</h2>
+      <details open><summary>Is there official software for the Svive Flow 7?</summary><p>When this project started, we could not find any official software or settings driver for the Svive Flow 7. The mouse works in Windows without a driver, but to see the battery level or change DPI and polling rate you need a tool like CompxTray.</p></details>
+      <details><summary>How do I check the battery level of my Svive mouse?</summary><p>Run CompxTray. The battery percentage is shown in the Windows tray and updates automatically.</p></details>
+      <details><summary>Can I change the DPI and polling rate of the Svive Flow 7?</summary><p>Yes. CompxTray sets 125, 250, 500 or 1000 Hz polling rate and 1 to 6 DPI stages from 100 to 30,000 DPI.</p></details>
+      <details><summary>Does it work with the Svive Flow 5, Flow S5 or Flow S7?</summary><p>Probably for the battery level, but these models have not been tested. Settings stay read-only until a model is verified.</p></details>
+      <details><summary>Is CompxTray made by Svive?</summary><p>No. CompxTray is an independent open-source project with no connection to Svive.</p></details>
+    </section>
+  </main>
+
+  <footer>
+    CompxTray is free software under the MIT license. It is not affiliated with or endorsed by Svive, Compx or any mouse manufacturer, and product names are trademarks of their owners. Changing settings writes to your mouse's memory; use at your own risk.
+    · <a href="https://github.com/HelloAxoxelol/CompxTray">GitHub</a> · <a href="sv/" hreflang="sv">Svenska</a>
+  </footer>
+</div>
+</body>
+</html>

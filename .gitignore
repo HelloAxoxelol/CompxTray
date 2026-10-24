@@ -1,0 +1,20 @@
+# build output
+bin/
+obj/
+*.exe
+*.pdb
+
+# local reports and personal data (may contain device IDs)
+tools/hid-report.txt
+tools/settings-report.txt
+tools/verify-report.txt
+tools/verify-start-backup.txt
+*.log
+log.txt
+backup-*.txt
+
+# editor / OS
+.vs/
+.vscode/
+Thumbs.db
+desktop.ini
