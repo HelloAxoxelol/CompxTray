@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>CompxTray</AssemblyName>
+    <RootNamespace>CompxTray.App</RootNamespace>
+    <Version>1.1.0</Version>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <ApplicationManifest>..\..\assets\app.manifest</ApplicationManifest>
+    <PublishTrimmed>true</PublishTrimmed>
+  </PropertyGroup>
+
+  <!-- HidSharp is not trim-safe and picks its backend per OS at run time, so it is kept whole. -->
+  <ItemGroup>
+    <TrimmerRootAssembly Include="HidSharp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="..\..\assets\icon.png" Link="Assets\icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.1.4" />
+    <PackageReference Include="Avalonia.Desktop" Version="12.1.4" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.4" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\CompxTray.Core.csproj" />
+  </ItemGroup>
+
+</Project>

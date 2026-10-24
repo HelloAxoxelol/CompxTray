@@ -1,0 +1,5 @@
+# CompxTray: lets the logged-in user talk to Compx mouse receivers (Svive Flow 7 and others) through hidraw.
+# Install:  sudo install -m 644 70-compxtray.rules /etc/udev/rules.d/  &&  sudo udevadm control --reload-rules
+# Then unplug and replug the receiver.
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="373b", TAG+="uaccess"
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3554", TAG+="uaccess"

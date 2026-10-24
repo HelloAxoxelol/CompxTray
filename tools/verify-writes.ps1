@@ -7,7 +7,7 @@ $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 $root = Split-Path -Parent $here
 $src = Join-Path $root 'src\Device'
 $out = Join-Path $here 'verify-report.txt'
-Add-Type -Path @((Join-Path $src 'CompxDevice.cs'), (Join-Path $src 'ConfigMap.cs'), (Join-Path $src 'MouseConfig.cs'))
+Add-Type -Path @((Join-Path $src 'CompxDevice.cs'), (Join-Path $src 'WinHid.cs'), (Join-Path $src 'ConfigMap.cs'), (Join-Path $src 'MouseConfig.cs'))
 
 $report = New-Object 'System.Collections.Generic.List[string]'
 function Log([string]$s) { $report.Add($s) }

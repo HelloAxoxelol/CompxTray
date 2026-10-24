@@ -80,6 +80,8 @@ Det här kan du göra:
 
 **Så kommer du igång:** ladda ner `CompxTray.exe` under [Releases](../../releases/latest) och starta den. Dubbelklicka på batteriikonen nere vid klockan för att öppna inställningarna. Appen är på engelska.
 
+**Mac och Linux:** det finns en förhandsversion för macOS och Linux som visar batterinivån i menyraden eller aktivitetsfältet och musens inställningar (bara läsning än så länge). Den är ännu inte testad på en riktig Mac eller Linux-dator. Se [macOS and Linux](#macos-and-linux-preview).
+
 ### Vanliga frågor
 
 **Finns det någon programvara till Svive Flow 7?**
@@ -132,6 +134,31 @@ To run a downloaded release: *More info → Run anyway*. Code signing through [S
 
 Settings, the log and backups are stored in `%APPDATA%\CompxTray`.
 
+## macOS and Linux (preview)
+
+A separate build for macOS and Linux shows the battery level in the menu bar or tray, with low battery notifications, and a window with the mouse's settings. Settings are **read-only** in this version. It shares the protocol code with the Windows app and has been tested against a real Svive Flow 7 on Windows, but **it has not been tested on a Mac or a Linux PC yet**. If you try it, please open an issue with what you see and the output of `compxtray-cli devices`.
+
+| Download from [Releases](../../releases/latest) | For |
+|---|---|
+| `CompxTray-osx-arm64.zip` | Macs with Apple silicon (M1 and later) |
+| `CompxTray-osx-x64.zip` | Intel Macs |
+| `CompxTray-linux-x64.tar.gz` | 64-bit Linux (x86-64) |
+
+**macOS:** unzip and move `CompxTray.app` to *Applications*. The app is not notarized by Apple, so macOS blocks it the first time you open it. Go to *System Settings → Privacy & Security* and click *Open Anyway*. If macOS asks for *Input Monitoring*, allow it so CompxTray can reach the receiver. The log is in `~/Library/Application Support/CompxTray`.
+
+**Linux:** unpack the archive and run `./install.sh`. It copies CompxTray to `~/.local/bin`, adds it to your applications menu and installs a udev rule (asks for your password) so you can open the receiver without root. Unplug and replug the receiver afterwards. The tray icon needs a desktop with StatusNotifier support: KDE Plasma, Xfce, Cinnamon and Ubuntu work out of the box, and on plain GNOME you need the *AppIndicator and KStatusNotifierItem Support* extension. The log is in `~/.config/CompxTray`.
+
+Both packages include `compxtray-cli`, a read-only command-line tool:
+
+| Command | What it shows |
+|---|---|
+| `compxtray-cli battery` | Battery level, charging state and voltage |
+| `compxtray-cli settings --wait 30` | DPI stages, polling rate, lift-off, debounce, motion sync and sleep. `--wait` keeps trying while the mouse is asleep |
+| `compxtray-cli diagnose` | Raw replies and the settings memory, for bug reports |
+| `compxtray-cli devices` | The receiver's HID interfaces, for bug reports |
+
+To build it yourself you need the [.NET 10 SDK](https://dot.net). On Linux run `sh cross/linux/package.sh linux-x64 1.1.0`, on a Mac `sh cross/macos/package.sh osx-arm64 1.1.0`. The result ends up in `out/`.
+
 ## Build from source
 
 You don't need Visual Studio or an SDK. The C# compiler that ships with Windows (.NET Framework 4.x) is enough.
@@ -174,9 +201,10 @@ If the memory matches the known layout, the model can be added to the verified l
 ## Project layout
 
 ```
-src/Device/   HID transport, memory map, read/write/verify logic
+src/Device/   protocol, memory map, read/write/verify logic (shared with cross/), and WinHid.cs, the Windows HID transport
 src/UI/       dark theme and owner-drawn controls, settings window
 src/          tray app, app settings, entry point
+cross/        the macOS and Linux build (.NET 10): Core (HidSharp transport), App (Avalonia), Cli, packaging
 tools/        diagnostics and the guided hardware test
 docs/         protocol notes, screenshots and the project website (GitHub Pages, English and Swedish)
 ```
@@ -190,6 +218,8 @@ The protocol was pieced together from public reverse-engineering work by others.
 - [MouseBattery](https://github.com/zhijuyingfeng/MouseBattery) and [atk-mouse-battery](https://github.com/wow-233/atk-mouse-battery): the battery command
 
 CompxTray's code is written from scratch; only protocol facts were taken from these projects. The memory map was confirmed by reading a real Svive Flow 7.
+
+The macOS and Linux build uses [HidSharp](https://software.seekye.com/hidsharp) (Apache-2.0) for USB access and [Avalonia](https://avaloniaui.net) (MIT) for the interface.
 
 ## Disclaimer
 

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=CompxTray
+Comment=Battery level and settings of Compx wireless mice (Svive Flow 7)
+Exec=@BIN@/CompxTray
+Icon=compxtray
+Terminal=false
+Categories=Utility;Settings;HardwareSettings;
